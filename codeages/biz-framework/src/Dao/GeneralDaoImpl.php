@@ -114,7 +114,7 @@ abstract class GeneralDaoImpl implements GeneralDaoInterface
         return $this->biz['db'];
     }
 
-    protected function getByFields($fields)
+    public function getByFields($fields)
     {
         $placeholders = array_map(function ($name) {
             return "{$name} = ?";
@@ -125,7 +125,7 @@ abstract class GeneralDaoImpl implements GeneralDaoInterface
         return $this->db()->fetchAssoc($sql, array_values($fields)) ?: array();
     }
 
-    protected function findInField($field, $values)
+    public function findInField($field, $values)
     {
         if (empty($values)) {
             return array();
