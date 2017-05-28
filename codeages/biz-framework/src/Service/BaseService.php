@@ -6,10 +6,10 @@ use Codeages\Biz\Framework\Context\Biz;
 
 abstract class BaseService
 {
-    protected $biz;
+    protected $kernel;
 
     public function __construct(Biz $biz)
     {
-        $this->biz = $biz;
+        $this->kernel = $biz;
     }
 }

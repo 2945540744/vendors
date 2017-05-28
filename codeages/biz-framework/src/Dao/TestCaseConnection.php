@@ -4,9 +4,9 @@ namespace Codeages\Biz\Framework\Dao;
 
 class TestCaseConnection extends Connection
 {
-    private $_insertedTables = array();
+    private $_insertedTables = [];
 
-    public function insert($tableName, array $data, array $types = array())
+    public function insert($tableName, array $data, array $types = [])
     {
         $this->_insertedTables[] = $tableName;
 
@@ -20,6 +20,6 @@ class TestCaseConnection extends Connection
 
     public function resetInsertedTables()
     {
-        $this->_insertedTables = array();
+        $this->_insertedTables = [];
     }
 }

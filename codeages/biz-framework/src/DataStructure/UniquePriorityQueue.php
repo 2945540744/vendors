@@ -4,7 +4,7 @@ namespace Codeages\Biz\Framework\DataStructure;
 
 class UniquePriorityQueue extends \SplPriorityQueue
 {
-    protected $values = array();
+    protected $values = [];
 
     protected $serial = PHP_INT_MAX;
 
@@ -13,7 +13,7 @@ class UniquePriorityQueue extends \SplPriorityQueue
         if (isset($this->values[$value])) {
             return;
         }
-        parent::insert($value, array($priority, $this->serial--));
+        parent::insert($value, [$priority, $this->serial--]);
         $this->values[$value] = true;
     }
 }

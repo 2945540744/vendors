@@ -60,7 +60,7 @@ class DaoProxy
 
     private function _callRealDao($method, $arguments)
     {
-        return call_user_func_array(array($this->dao, $method), $arguments);
+        return call_user_func_array([$this->dao, $method], $arguments);
     }
 
     private function _unserialize(&$row)
@@ -70,7 +70,7 @@ class DaoProxy
         }
 
         $declares = $this->dao->declares();
-        $serializes = empty($declares['serializes']) ? array() : $declares['serializes'];
+        $serializes = empty($declares['serializes']) ? [] : $declares['serializes'];
 
         foreach ($serializes as $key => $method) {
             if (!isset($row[$key])) {
@@ -95,7 +95,7 @@ class DaoProxy
     private function _serialize(&$row)
     {
         $declares = $this->dao->declares();
-        $serializes = empty($declares['serializes']) ? array() : $declares['serializes'];
+        $serializes = empty($declares['serializes']) ? [] : $declares['serializes'];
 
         foreach ($serializes as $key => $method) {
             if (!isset($row[$key])) {
@@ -120,7 +120,7 @@ class DaoProxy
     private function _jsonUnserialize($value)
     {
         if (empty($value)) {
-            return array();
+            return [];
         }
 
         return json_decode($value, true);
@@ -138,7 +138,7 @@ class DaoProxy
     private function _delimiterUnserialize($value)
     {
         if (empty($value)) {
-            return array();
+            return [];
         }
 
         return explode('|', trim($value, '|'));

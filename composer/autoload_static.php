@@ -10,13 +10,17 @@ class ComposerStaticInitf5ad9b29bbf104c53ca7120994182b16
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         'e40631d46120a9c38ea139981f8dab26' => __DIR__ . '/..' . '/ircmaxell/password-compat/lib/password.php',
         '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
+        'edc6464955a37aa4d5fbf39d40fb6ee7' => __DIR__ . '/..' . '/symfony/polyfill-php55/bootstrap.php',
         'bd9634f2d41831496de0d3dfe4c94881' => __DIR__ . '/..' . '/symfony/polyfill-php56/bootstrap.php',
         '023d27dca8066ef29e6739335ea73bad' => __DIR__ . '/..' . '/symfony/polyfill-php70/bootstrap.php',
-        'edc6464955a37aa4d5fbf39d40fb6ee7' => __DIR__ . '/..' . '/symfony/polyfill-php55/bootstrap.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
     );
 
     public static $prefixLengthsPsr4 = array (
+        'T' => 
+        array (
+            'Tests\\' => 6,
+        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Util\\' => 22,
@@ -25,7 +29,6 @@ class ComposerStaticInitf5ad9b29bbf104c53ca7120994182b16
             'Symfony\\Polyfill\\Php55\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Component\\Yaml\\' => 23,
-            'Symfony\\Component\\Translation\\' => 30,
             'Symfony\\Component\\Security\\Acl\\' => 31,
             'Symfony\\Component\\Security\\' => 27,
             'Symfony\\Component\\Routing\\' => 26,
@@ -47,7 +50,6 @@ class ComposerStaticInitf5ad9b29bbf104c53ca7120994182b16
         ),
         'N' => 
         array (
-            'Neitui\\Tests\\' => 13,
             'Neitui\\' => 7,
         ),
         'M' => 
@@ -58,12 +60,6 @@ class ComposerStaticInitf5ad9b29bbf104c53ca7120994182b16
         array (
             'Gregwar\\Captcha\\' => 16,
         ),
-        'F' => 
-        array (
-            'Footstones\\Plumber\\Tests\\' => 25,
-            'Footstones\\Plumber\\Example\\' => 27,
-            'Footstones\\Plumber\\' => 19,
-        ),
         'D' => 
         array (
             'Doctrine\\Common\\Cache\\' => 22,
@@ -72,15 +68,16 @@ class ComposerStaticInitf5ad9b29bbf104c53ca7120994182b16
         ),
         'C' => 
         array (
+            'Codeages\\Biz\\Framework\\Tests\\' => 29,
             'Codeages\\Biz\\Framework\\' => 23,
-        ),
-        'B' => 
-        array (
-            'Beanstalk\\' => 10,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
+        'Tests\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/tests',
+        ),
         'Symfony\\Polyfill\\Util\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-util',
@@ -104,10 +101,6 @@ class ComposerStaticInitf5ad9b29bbf104c53ca7120994182b16
         'Symfony\\Component\\Yaml\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/yaml',
-        ),
-        'Symfony\\Component\\Translation\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/translation',
         ),
         'Symfony\\Component\\Security\\Acl\\' => 
         array (
@@ -169,10 +162,6 @@ class ComposerStaticInitf5ad9b29bbf104c53ca7120994182b16
         array (
             0 => __DIR__ . '/..' . '/robmorgan/phinx/src/Phinx',
         ),
-        'Neitui\\Tests\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/tests',
-        ),
         'Neitui\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
@@ -184,18 +173,6 @@ class ComposerStaticInitf5ad9b29bbf104c53ca7120994182b16
         'Gregwar\\Captcha\\' => 
         array (
             0 => __DIR__ . '/..' . '/gregwar/captcha',
-        ),
-        'Footstones\\Plumber\\Tests\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/footstones/plumber/tests',
-        ),
-        'Footstones\\Plumber\\Example\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/footstones/plumber/example',
-        ),
-        'Footstones\\Plumber\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/footstones/plumber/src',
         ),
         'Doctrine\\Common\\Cache\\' => 
         array (
@@ -209,13 +186,13 @@ class ComposerStaticInitf5ad9b29bbf104c53ca7120994182b16
         array (
             0 => __DIR__ . '/..' . '/doctrine/common/lib/Doctrine/Common',
         ),
+        'Codeages\\Biz\\Framework\\Tests\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/codeages/biz-framework/tests',
+        ),
         'Codeages\\Biz\\Framework\\' => 
         array (
             0 => __DIR__ . '/..' . '/codeages/biz-framework/src',
-        ),
-        'Beanstalk\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/davidpersson/beanstalk/src',
         ),
     );
 

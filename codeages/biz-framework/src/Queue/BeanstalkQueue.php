@@ -12,7 +12,7 @@ class BeanstalkQueue implements Queue
     const DEFAULT_DELAY = 0;
     const DEFAULT_TTR = 86400;
 
-    public function __construct($options = array())
+    public function __construct($options = [])
     {
         $this->options = $options;
     }
@@ -41,7 +41,7 @@ class BeanstalkQueue implements Queue
         return $this;
     }
 
-    public function push($queue, array $body, array $options = array())
+    public function push($queue, array $body, array $options = [])
     {
         if (empty($this->client)) {
             throw new \RuntimeException('Queue is not connected, please connect first.');
@@ -52,7 +52,7 @@ class BeanstalkQueue implements Queue
         return $this->client->put($options['pri'], self::DEFAULT_DELAY, $options['ttr'], json_encode($body));
     }
 
-    public function pushDelay($queue, array $body, $delay, array $options = array())
+    public function pushDelay($queue, array $body, $delay, array $options = [])
     {
         if (empty($this->client)) {
             throw new \RuntimeException('Queue is not connected, please connect first.');
@@ -72,6 +72,6 @@ class BeanstalkQueue implements Queue
 
     protected function fillOptions($options)
     {
-        return array_merge(array('pri' => self::DEFAULT_PRI, 'ttr' => self::DEFAULT_TTR), $options);
+        return array_merge(['pri' => self::DEFAULT_PRI, 'ttr' => self::DEFAULT_TTR], $options);
     }
 }

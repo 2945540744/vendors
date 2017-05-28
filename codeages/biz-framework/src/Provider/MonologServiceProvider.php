@@ -72,7 +72,7 @@ class MonologServiceProvider implements ServiceProviderInterface, BootableProvid
         };
 
         $app['monolog.handlers'] = function () use ($app, $defaultHandler) {
-            $handlers = array();
+            $handlers = [];
 
             // enables the default handler if a logfile was set or the monolog.handler service was redefined
             if ($app['monolog.logfile'] || $defaultHandler !== $app->raw('monolog.handler')) {

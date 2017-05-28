@@ -6,14 +6,14 @@ use Doctrine\DBAL\Connection as DoctrineConnection;
 
 class Connection extends DoctrineConnection
 {
-    public function update($tableExpression, array $data, array $identifier, array $types = array())
+    public function update($tableExpression, array $data, array $identifier, array $types = [])
     {
         $this->checkFieldNames(array_keys($data));
 
         return parent::update($tableExpression, $data, $identifier, $types);
     }
 
-    public function insert($tableExpression, array $data, array $types = array())
+    public function insert($tableExpression, array $data, array $types = [])
     {
         $this->checkFieldNames(array_keys($data));
 
@@ -41,7 +41,7 @@ class Connection extends DoctrineConnection
             return $result;
         } catch (\Exception $e) {
             $this->rollBack();
-            !is_null($exceptionFunc) && $exceptionFunc($this);
+            null !== $exceptionFunc && $exceptionFunc($this);
             throw $e;
         }
     }

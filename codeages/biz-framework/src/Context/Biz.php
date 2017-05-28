@@ -6,14 +6,17 @@ use Pimple\Container;
 use Doctrine\DBAL\DriverManager;
 use Pimple\ServiceProviderInterface;
 use Codeages\Biz\Framework\Dao\DaoProxy;
+use Symfony\Component\EventDispatcher\GenericEvent;
 use Symfony\Component\EventDispatcher\EventDispatcher;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-class Biz extends Container
+abstract class Biz extends Container
 {
-    protected $providers = array();
+    protected $providers = [];
     protected $booted    = false;
 
-    public function __construct(array $values = array())
+    public function __construct(array $values = [])
     {
         parent::__construct();
 
@@ -21,7 +24,7 @@ class Biz extends Container
         $this['logger']                = null;
         $this['migration.directories'] = new \ArrayObject();
 
-        $this['autoload.aliases'] = new \ArrayObject(array('' => ''));
+        $this['autoload.aliases'] = new \ArrayObject(['' => '']);
 
         $this['autoload.object_maker.service'] = function ($biz) {
             return function ($namespace, $name) use ($biz) {
@@ -40,10 +43,10 @@ class Biz extends Container
         };
 
         $this['autoloader'] = function ($biz) {
-            return new ContainerAutoloader($biz, $biz['autoload.aliases'], array(
+            return new ContainerAutoloader($biz, $biz['autoload.aliases'], [
                 'service' => $biz['autoload.object_maker.service'],
                 'dao'     => $biz['autoload.object_maker.dao']
-            ));
+            ]);
         };
 
         $this['dispatcher'] = function ($biz) {
@@ -59,7 +62,7 @@ class Biz extends Container
         }
     }
 
-    public function register(ServiceProviderInterface $provider, array $values = array())
+    public function register(ServiceProviderInterface $provider, array $values = [])
     {
         $this->providers[] = $provider;
         parent::register($provider, $values);
@@ -67,7 +70,7 @@ class Biz extends Container
         return $this;
     }
 
-    public function boot($options = array())
+    public function boot($options = [])
     {
         if (true === $this->booted) {
             return;
@@ -86,7 +89,8 @@ class Biz extends Container
         $this['db'] = function ($kernel) {
             $cfg = $kernel['database'];
 
-            return DriverManager::getConnection(array(
+            return DriverManager::getConnection(
+                [
                 'wrapperClass' => 'Codeages\Biz\Framework\Dao\Connection',
                 'dbname'       => $cfg['name'],
                 'user'         => $cfg['user'],
@@ -94,8 +98,11 @@ class Biz extends Container
                 'host'         => $cfg['host'],
                 'driver'       => $cfg['driver'],
                 'charset'      => $cfg['charset']
-            ));
+                ]
+            );
         };
+
+        $this->registerProviders();
 
         $this->booted = true;
     }
@@ -114,6 +121,50 @@ class Biz extends Container
             return $dispatcher;
         });
     }
+
+    /**
+     * @return EventDispatcher
+     */
+    public function getEventDispatcher()
+    {
+        return $this['dispatcher'];
+    }
+
+    /**
+     * @param  string       $eventName
+     * @param  string|GenericEvent $event
+     * @param  array        $arguments
+     * @return GenericEvent
+     */
+    public function dispatch($eventName, $event, array $arguments = [])
+    {
+        if (!$event instanceof GenericEvent) {
+            $event = new GenericEvent($event, $arguments);
+        }
+        
+        return $this->getEventDispatcher()->dispatch($eventName, $event);
+    }
+
+    public function addEventSubscriber(EventSubscriberInterface $subscriber)
+    {
+        $this->getEventDispatcher()->addSubscriber($subscriber);
+        return $this;
+    }
+
+    public function addEventSubscribers(array $subscribers)
+    {
+        foreach ($subscribers as $subscriber) {
+            if (!$subscriber instanceof EventSubscriberInterface) {
+                throw new \RuntimeException('subscriber type error');
+            }
+
+            $this->getEventDispatcher()->addSubscriber($subscriber);
+        }
+
+        return $this;
+    }
+
+    abstract public function registerProviders();
 
     public function service($alias)
     {

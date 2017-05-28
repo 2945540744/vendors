@@ -32,7 +32,7 @@ class ContainerAutoloader
 
         if (count($parts) === 1) {
             $prefix = '';
-            $middle = array();
+            $middle = [];
             $name = $parts[0];
         } else {
             $prefix = $parts[0];
@@ -41,7 +41,7 @@ class ContainerAutoloader
         }
 
         if (!isset($this->aliases[$prefix])) {
-            $middle = array_merge(array($prefix), $middle);
+            $middle = array_merge([$prefix], $middle);
             $prefix = '';
         }
         $namespace = rtrim($this->aliases[$prefix], '\\');

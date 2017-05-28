@@ -48,7 +48,7 @@ class DynamicQueryBuilder extends QueryBuilder
             return $this;
         }
 
-        $marks = array();
+        $marks = [];
         foreach (array_values($this->conditions[$conditionName]) as $index => $value) {
             $marks[] = ":{$conditionName}_{$index}";
             $this->conditions["{$conditionName}_{$index}"] = $value;
@@ -95,6 +95,6 @@ class DynamicQueryBuilder extends QueryBuilder
             return false;
         }
 
-        return array_key_exists($conditionName, $this->conditions) && !is_null($this->conditions[$conditionName]);
+        return array_key_exists($conditionName, $this->conditions) && null !== $this->conditions[$conditionName];
     }
 }

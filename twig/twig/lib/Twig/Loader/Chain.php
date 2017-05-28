@@ -59,6 +59,7 @@ class Twig_Loader_Chain implements Twig_LoaderInterface, Twig_ExistsLoaderInterf
                 $exceptions[] = $e->getMessage();
             }
         }
+
         throw new Twig_Error_Loader(sprintf('Template "%s" is not defined%s.', $name, $exceptions ? ' ('.implode(', ', $exceptions).')' : ''));
     }
 
@@ -103,12 +104,14 @@ class Twig_Loader_Chain implements Twig_LoaderInterface, Twig_ExistsLoaderInterf
             if ($loader instanceof Twig_ExistsLoaderInterface && !$loader->exists($name)) {
                 continue;
             }
+
             try {
                 return $loader->getCacheKey($name);
             } catch (Twig_Error_Loader $e) {
                 $exceptions[] = get_class($loader).': '.$e->getMessage();
             }
         }
+
         throw new Twig_Error_Loader(sprintf('Template "%s" is not defined%s.', $name, $exceptions ? ' ('.implode(', ', $exceptions).')' : ''));
     }
 
@@ -129,6 +132,7 @@ class Twig_Loader_Chain implements Twig_LoaderInterface, Twig_ExistsLoaderInterf
                 $exceptions[] = get_class($loader).': '.$e->getMessage();
             }
         }
+
         throw new Twig_Error_Loader(sprintf('Template "%s" is not defined%s.', $name, $exceptions ? ' ('.implode(', ', $exceptions).')' : ''));
     }
 }
