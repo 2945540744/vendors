@@ -31,8 +31,6 @@ return array(
     'Neitui\\' => array($baseDir . '/src'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
     'Gregwar\\Captcha\\' => array($vendorDir . '/gregwar/captcha'),
-    'GDText\\Tests\\' => array($vendorDir . '/stil/gd-text/tests'),
-    'GDText\\' => array($vendorDir . '/stil/gd-text/src'),
     'Doctrine\\Common\\Cache\\' => array($vendorDir . '/doctrine/cache/lib/Doctrine/Common/Cache'),
     'Doctrine\\Common\\Annotations\\' => array($vendorDir . '/doctrine/annotations/lib/Doctrine/Common/Annotations'),
     'Doctrine\\Common\\' => array($vendorDir . '/doctrine/common/lib/Doctrine/Common'),

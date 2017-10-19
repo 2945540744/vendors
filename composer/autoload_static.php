@@ -59,8 +59,6 @@ class ComposerStaticInitf5ad9b29bbf104c53ca7120994182b16
         'G' => 
         array (
             'Gregwar\\Captcha\\' => 16,
-            'GDText\\Tests\\' => 13,
-            'GDText\\' => 7,
         ),
         'D' => 
         array (
@@ -175,14 +173,6 @@ class ComposerStaticInitf5ad9b29bbf104c53ca7120994182b16
         'Gregwar\\Captcha\\' => 
         array (
             0 => __DIR__ . '/..' . '/gregwar/captcha',
-        ),
-        'GDText\\Tests\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/stil/gd-text/tests',
-        ),
-        'GDText\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/stil/gd-text/src',
         ),
         'Doctrine\\Common\\Cache\\' => 
         array (
